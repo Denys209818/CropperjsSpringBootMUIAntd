@@ -15,64 +15,10 @@ import {
   import "cropperjs/dist/cropper.min.css";
 import axiosService from '../../../services/axiosService';
 import { useNavigate } from 'react-router-dom';
+import { FileInfo, FileObj, FileData, CarData, CarDataForm } from './types';
+import { formItemLayout, tailFormItemLayout } from './settings';
   const { Title } = Typography;
   
-
-  
-  const formItemLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 8 },
-    },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 16 },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 8,
-      },
-    },
-  };
-
-  export interface FileObj
-  {
-      uid: string,
-      originFileObj: File
-  }
-  export interface FileInfo 
-  {
-      code: string,
-      uid?:string
-  }
-
-  export interface FileData 
-  {
-      file: FileObj,
-      fileList: FileList,
-  }
-
-  export interface CarData 
-  {
-      Model: string,
-      Brand: string,
-      Price: Number,
-      Files: string
-  }
-
-  export interface CarDataForm
-  {
-      Model: string,
-      Brand: string,
-      Price: Number
-  }
 
 const Main: React.FC = () => 
 {
@@ -83,7 +29,7 @@ const Main: React.FC = () =>
     const [filesCode, setfilesCode] = useState<Array<FileInfo>>(new Array<FileInfo>());
     const [visible, setVisible] = useState(false);
     const [form] = Form.useForm();
-  
+    const [files, setFiles] = useState<FileData>();
 
     const onFinish = (values: CarDataForm) => {
       let sendObject: CarData = {
@@ -98,7 +44,7 @@ const Main: React.FC = () =>
     };
 
 
-    const [files, setFiles] = useState<FileData>();
+    
     const normFile = (e: FileData) => {
         setFiles(e);
         if (Array.isArray(e)) {

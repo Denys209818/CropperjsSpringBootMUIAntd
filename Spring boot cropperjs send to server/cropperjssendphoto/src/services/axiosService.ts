@@ -1,9 +1,9 @@
 import axios from "axios";
-import { CarData } from "../components/Admin/Main";
+import { CarData } from "../components/Admin/Main/types";
 
 
 const axiosCreate = axios.create({
-    baseURL: 'http://localhost:8800/',
+    baseURL: 'http://localhost:8808/',
     headers: {
         'Content-Type':'application/json'
     }
